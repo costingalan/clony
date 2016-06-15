@@ -1,0 +1,3 @@
+#Add here your oauth generated token in order to make authentificated requests
+# because of the rate limit imposed by Github
+GITHUB_OAUTH_TOKEN=

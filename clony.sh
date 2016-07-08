@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#Author: Costin Galan | cgalan@cloudbasesolutions.com
+#Author: Costin Gălan | cgalan@cloudbasesolutions.com
 #License: Apache2.0 | https://www.apache.org/licenses/LICENSE-2.0
 #Description: Script for cloning your repositories and add the original
 #             parent fork
@@ -39,7 +39,7 @@ function find_father {
     done
 }
 
-function clone_repos {
+function clone_repo {
     mkdir -p "$2"
     pushd "$2"
     index=1
@@ -55,7 +55,7 @@ function clone_repos {
     popd
 }
 
-function update_repos {
+function update_repo {
     for directory in "${1}"/*; do
         if [[ -d $directory ]]; then
             pushd "$directory"

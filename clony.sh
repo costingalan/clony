@@ -13,7 +13,12 @@ source github_oauth_token.txt
 
 if [[ $# -lt 2 ]]; then
     echo "Not enough parameters"
-    echo "Usage: ./$0 username directory"
+    echo "Usage: ./$0 username directory [mode]"
+    echo "Possible modes:"
+    echo "[a]ll = clone + attach father + update"
+    echo "[c]lone = clone"
+    echo "[u]pdate = update"
+    echo "[f]ather = attach father"
     exit 1
 fi
 
@@ -64,4 +69,28 @@ function update_repos {
     done
 }
 
-clone_repos "$1" "$2" && find_father "$1" "$2" && update_repos "$2"
+if [[ "$3" -eq 'a' ]]; then
+    echo "Selected mode is [a]ll. I will:"
+    echo "clone the repos, attach the parent and then update them"
+    clone_repos "$1" "$2" && find_father "$1" "$2" && update_repos "$2"
+fi
+
+if [[ "$3" -eq 'f' ]]; then
+    echo "Selected mode is [f]ind father. I will:"
+    echo "attach the parent to the repos"
+    find_father "$1" "$2"
+fi
+
+if [[ "$3" -eq 'c' ]]; then
+    echo "Selected mode is [c]one the repos. I will:"
+    echo "clone the repos to the desired location"
+    clone_repos "$1" "$2"
+fi
+
+if [[ "$3" -eq 'u' ]]; then
+    echo "Selected mode is [u]pdate the repos. I will:"
+    echo "update the repositories"
+    update_repos "$2"
+fi
+
+
